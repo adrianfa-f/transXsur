@@ -149,10 +149,10 @@ const ServiceDetail = () => {
               <div className="text-center">
                 <p className="text-sm text-gray-500">O llámanos directamente</p>
                 <a
-                  href="tel:+34123456789"
+                  href="tel:+34643495351"
                   className="text-xl font-bold text-primary hover:text-secondary transition"
                 >
-                  +34 123 456 789
+                  +34 643 49 53 51
                 </a>
               </div>
             </div>
