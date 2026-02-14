@@ -64,7 +64,7 @@ const Quote = () => {
   const handleWhatsApp = () => {
     const phone = formData.phone
       ? formData.phone.replace(/\D/g, "")
-      : "123456789"; // Número por defecto
+      : "34643495351";
     const url = `https://wa.me/${phone}?text=${getMessage()}`;
     window.open(url, "_blank");
   };

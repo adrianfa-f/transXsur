@@ -40,7 +40,7 @@ const Contact = () => {
 
   const handleWhatsApp = () => {
     // Número real de la empresa (ajústalo según corresponda)
-    const phoneNumber = "34612345678"; // Ejemplo: +34 612 345 678 sin espacios ni +
+    const phoneNumber = "34643495351"; // Ejemplo: +34 612 345 678 sin espacios ni +
     const message = getMessage(true);
     const url = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(url, "_blank");
@@ -49,7 +49,7 @@ const Contact = () => {
   const handleEmail = () => {
     const subject = "Contacto desde la web de TransXSur";
     const body = getMessage(true).replace(/%0A/g, "\n"); // Convertir saltos para email
-    const mailtoUrl = `mailto:pedro@transxsur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoUrl = `mailto:info@transxsur.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoUrl;
   };
 
