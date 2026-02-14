@@ -38,11 +38,11 @@ const Home = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <Button
-                to="/cotizar"
+                to="/contacto"
                 variant="secondary"
                 className="text-lg px-8 py-4"
               >
-                Solicita presupuesto
+                Contactanos
               </Button>
               <Button
                 to="/servicios"
