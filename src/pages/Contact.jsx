@@ -116,7 +116,7 @@ const Contact = () => {
                 <FaPhone className="text-[#1e5939]" />
                 <span>También puedes llamar al </span>
                 <a
-                  href="tel:+34123456789"
+                  href="tel:+34643495351"
                   className="font-bold text-[#1e5939] hover:underline"
                 >
                   +34 123 456 789
