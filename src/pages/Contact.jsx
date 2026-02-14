@@ -119,7 +119,7 @@ const Contact = () => {
                   href="tel:+34643495351"
                   className="font-bold text-[#1e5939] hover:underline"
                 >
-                  +34 123 456 789
+                  +34 643 49 53 51
                 </a>
               </div>
             </div>
