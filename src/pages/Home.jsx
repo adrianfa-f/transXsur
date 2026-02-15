@@ -1,13 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaTruck, FaClock, FaShieldAlt, FaSmile } from "react-icons/fa";
 import Section from "../components/common/Section";
 import Button from "../components/common/Button";
 import Card from "../components/common/Card";
-import { testimonials } from "../data/testimonials";
 import heroImage from "../assets/hero-truck.jpg"; // Asegúrate de tener una imagen en assets
 import Seo from "../components/common/Seo";
+import { Link } from "react-router-dom";
+import { services } from "../data/services";
+import equipo from "../assets/equipo.jpg";
+import avatar1 from "../assets/avatars/avatar-1.jpg";
+import avatar2 from "../assets/avatars/avatar-2.jpg";
+import avatar3 from "../assets/avatars/avatar-3.jpg";
+import avatar4 from "../assets/avatars/avatar-4.jpg";
+
+const featuredServices = services.slice(0, 4);
 
 const Home = () => {
+  const [testimonials, setTestimonials] = useState([
+    {
+      id: 1,
+      name: "Carmen López",
+      role: "Mudanza local",
+      content:
+        "Pedro fue súper puntual y cuidó todos mis muebles como si fueran suyos. Repetiré sin duda.",
+      rating: 5,
+      avatar: avatar1,
+    },
+    {
+      id: 2,
+      name: "Javier Medina",
+      role: "Transporte de mercancía",
+      content:
+        "Necesitaba enviar unos palés urgente y me lo resolvió en el día. Trato muy cercano.",
+      rating: 5,
+      avatar: avatar2,
+    },
+    {
+      id: 3,
+      name: "Marta Jiménez",
+      role: "Particular",
+      content:
+        "Me ayudó con una mudanza pequeña y el precio fue justo. Encantada con el servicio.",
+      rating: 4,
+      avatar: avatar3,
+    },
+  ]);
+
+  // Estado para el formulario
+  const [newName, setNewName] = useState("");
+  const [newRating, setNewRating] = useState(5);
+  const [newContent, setNewContent] = useState("");
+
+  const handleAddTestimonial = (e) => {
+    e.preventDefault();
+    if (!newName.trim() || !newContent.trim()) return;
+
+    // Creamos el nuevo testimonio del usuario
+    const userTestimonial = {
+      id: Date.now(), // Un ID único
+      name: newName.trim(),
+      role: "Cliente",
+      content: newContent.trim(),
+      rating: newRating,
+      avatar: avatar4, // El cuarto avatar es para el usuario
+    };
+
+    // Filtramos para quitar cualquier testimonio que haya añadido el usuario antes
+    // (los identificamos porque su role es "Cliente" y su avatar es avatar4)
+    const filteredTestimonials = testimonials.filter(
+      (t) => !(t.role === "Cliente" && t.avatar === avatar4),
+    );
+
+    // Añadimos el nuevo testimonio al final
+    setTestimonials([...filteredTestimonials, userTestimonial]);
+
+    // Limpiamos el formulario
+    setNewName("");
+    setNewRating(5);
+    setNewContent("");
+  };
+
   return (
     <>
       <Seo
@@ -122,165 +194,58 @@ const Home = () => {
 
           {/* Mosaico dinámico */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 auto-rows-[380px]">
-            {/* Servicio 1 – Mudanzas */}
-            <div className="relative group rounded-3xl overflow-hidden shadow-2xl bg-white/40 backdrop-blur-xl border border-white/30 md:col-span-2">
-              <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
-                alt="Mudanzas locales"
-                className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+            {featuredServices.map((service, index) => {
+              // Mantenemos el diseño original: el primer y cuarto servicio ocupan 2 columnas
+              const colSpan =
+                index === 0 || index === 3 ? "md:col-span-2" : "md:col-span-1";
 
-              <div className="absolute bottom-0 p-10 text-white">
-                <h3 className="text-3xl font-bold mb-3">
-                  Mudanzas locales y residenciales
-                </h3>
-                <p className="text-white/80 max-w-md mb-6">
-                  Ayudamos a familias y particulares a trasladar sus
-                  pertenencias con cuidado y puntualidad.
-                </p>
-                <a
-                  href="/servicios/mudanzas-locales"
-                  className="inline-flex items-center font-semibold hover:text-secondary transition-colors"
+              return (
+                <div
+                  key={service.id}
+                  className={`relative group rounded-3xl overflow-hidden shadow-2xl bg-white/40 backdrop-blur-xl border border-white/30 ${colSpan}`}
                 >
-                  Saber más
-                  <svg
-                    className="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
+                  <img
+                    src={service.images[0]} // Primera imagen de cada servicio (local)
+                    alt={service.title}
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
 
-            {/* Servicio 2 – Transporte mercancías */}
-            <div className="relative group rounded-3xl overflow-hidden shadow-2xl bg-white/40 backdrop-blur-xl border border-white/30">
-              <img
-                src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80"
-                alt="Transporte de mercancías"
-                className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-
-              <div className="absolute bottom-0 p-10 text-white">
-                <h3 className="text-3xl font-bold mb-3">
-                  Transporte de mercancías generales
-                </h3>
-                <p className="text-white/80 max-w-md mb-6">
-                  Carga seca, paletizada o bultos sueltos. Desde un envío
-                  pequeño hasta media carga.
-                </p>
-                <a
-                  href="/servicios/transporte-mercancias"
-                  className="inline-flex items-center font-semibold hover:text-secondary transition-colors"
-                >
-                  Saber más
-                  <svg
-                    className="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            {/* Servicio 3 – Mensajería urgente */}
-            <div className="relative group rounded-3xl overflow-hidden shadow-2xl bg-white/40 backdrop-blur-xl border border-white/30">
-              <img
-                src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"
-                alt="Mensajería urgente"
-                className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-
-              <div className="absolute bottom-0 p-10 text-white">
-                <h3 className="text-3xl font-bold mb-3">
-                  Mensajería y paquetería urgente
-                </h3>
-                <p className="text-white/80 max-w-md mb-6">
-                  Entregas puerta a puerta en el mismo día o en franjas horarias
-                  concretas.
-                </p>
-                <a
-                  href="/servicios/mensajeria-urgente"
-                  className="inline-flex items-center font-semibold hover:text-secondary transition-colors"
-                >
-                  Saber más
-                  <svg
-                    className="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            {/* Servicio 4 – Fletes empresas */}
-            <div className="relative group rounded-3xl overflow-hidden shadow-2xl bg-white/40 backdrop-blur-xl border border-white/30 md:col-span-2">
-              <img
-                src="https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?auto=format&fit=crop&w=1200&q=80"
-                alt="Fletes y mudanzas para empresas"
-                className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-
-              <div className="absolute bottom-0 p-10 text-white">
-                <h3 className="text-3xl font-bold mb-3">
-                  Fletes y mudanzas para empresas
-                </h3>
-                <p className="text-white/80 max-w-md mb-6">
-                  Traslado de mobiliario de oficina, material informático o
-                  documentación.
-                </p>
-                <a
-                  href="/servicios/fletes-empresas"
-                  className="inline-flex items-center font-semibold hover:text-secondary transition-colors"
-                >
-                  Saber más
-                  <svg
-                    className="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
+                  <div className="absolute bottom-0 p-10 text-white">
+                    <h3 className="text-3xl font-bold mb-3">{service.title}</h3>
+                    <p className="text-white/80 max-w-md mb-6">
+                      {service.shortDescription}
+                    </p>
+                    <Link
+                      to={`/servicios/${service.slug}`}
+                      className="inline-flex items-center font-semibold hover:text-secondary transition-colors"
+                    >
+                      Saber más
+                      <svg
+                        className="w-5 h-5 ml-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           <div className="text-center mt-20">
-            <button className="group relative bg-primary text-white px-10 py-5 rounded-full font-semibold text-lg shadow-xl overflow-hidden inline-flex items-center gap-3">
+            <Link
+              to="/servicios"
+              className="group relative bg-primary text-white px-10 py-5 rounded-full font-semibold text-lg shadow-xl overflow-hidden inline-flex items-center gap-3"
+            >
               <span className="relative z-10">
                 Explorar todos los servicios
               </span>
@@ -298,7 +263,7 @@ const Home = () => {
                 />
               </svg>
               <span className="absolute inset-0 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -309,7 +274,7 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
               <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-6">
-                Un equipo, un camión,{" "}
+                Un equipo, una furgoneta,{" "}
                 <span className="text-secondary">mil soluciones</span>
               </h2>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
@@ -337,7 +302,7 @@ const Home = () => {
             <div className="order-1 md:order-2 relative">
               <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                  src={equipo}
                   alt="Equipo TransXSur"
                   className="w-full h-full object-cover"
                 />
@@ -352,21 +317,21 @@ const Home = () => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Años de experiencia</p>
-                    <p className="text-xl font-bold text-primary">Desde 2015</p>
+                    <p className="text-xl font-bold text-primary">Desde 2019</p>
                   </div>
                 </div>
               </div>
 
-              {/* Segunda métrica - derecha */}
+              {/* Segunda métrica - derecha (ahora realista) */}
               <div className="absolute -bottom-20 -right-12 hidden md:block bg-white rounded-2xl shadow-xl p-6 max-w-xs">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center text-3xl font-bold text-accent">
-                    1k+
+                    1
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Entregas realizadas</p>
+                    <p className="text-sm text-gray-500">Vehículo propio</p>
                     <p className="text-xl font-bold text-primary">
-                      Más de 1000
+                      Ford Transit
                     </p>
                   </div>
                 </div>
@@ -376,15 +341,17 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonios */}
+      {/* Seccion de testimonios*/}
       <Section
         title="Lo que dicen nuestros clientes"
         subtitle="Opiniones reales de personas y empresas que confiaron en nosotros."
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Grid de testimonios */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {testimonials.map((testimonial) => (
             <Card key={testimonial.id} className="p-6">
               <div className="flex items-center mb-4">
+                {/* Avatar con imagen local */}
                 <img
                   src={testimonial.avatar}
                   alt={testimonial.name}
@@ -400,7 +367,11 @@ const Home = () => {
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5 fill-current"
+                    className={`w-5 h-5 fill-current ${
+                      i < testimonial.rating
+                        ? "text-secondary"
+                        : "text-gray-300"
+                    }`}
                     viewBox="0 0 24 24"
                   >
                     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
@@ -409,6 +380,86 @@ const Home = () => {
               </div>
             </Card>
           ))}
+        </div>
+
+        {/* Formulario para añadir testimonio */}
+        <div className="bg-white p-8 rounded-lg shadow-md border border-gray-200 max-w-2xl mx-auto">
+          <h3 className="text-2xl font-bold text-primary mb-4">
+            ¿Has usado nuestros servicios?
+          </h3>
+          <p className="text-gray-600 mb-6">
+            Cuéntanos tu experiencia. ¡Tu opinión nos ayuda a mejorar!
+          </p>
+          <form onSubmit={handleAddTestimonial}>
+            <div className="mb-4">
+              <label
+                htmlFor="name"
+                className="block text-gray-700 font-medium mb-2"
+              >
+                Tu nombre
+              </label>
+              <input
+                type="text"
+                id="name"
+                value={newName}
+                onChange={(e) => setNewName(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Ej: María García"
+                required
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-gray-700 font-medium mb-2">
+                Valoración
+              </label>
+              <div className="flex gap-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    type="button"
+                    onClick={() => setNewRating(star)}
+                    className="focus:outline-none"
+                  >
+                    <svg
+                      className={`w-8 h-8 ${
+                        star <= newRating ? "text-secondary" : "text-gray-300"
+                      } fill-current transition-colors`}
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                    </svg>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-4">
+              <label
+                htmlFor="opinion"
+                className="block text-gray-700 font-medium mb-2"
+              >
+                Tu opinión
+              </label>
+              <textarea
+                id="opinion"
+                value={newContent}
+                onChange={(e) => setNewContent(e.target.value)}
+                rows="4"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Cuéntanos cómo fue tu experiencia..."
+                required
+              ></textarea>
+            </div>
+
+            <Button type="submit" variant="primary" className="w-full">
+              Enviar opinión
+            </Button>
+          </form>
+          <p className="text-xs text-gray-400 mt-4 text-center">
+            * Las opiniones se muestran temporalmente en esta pantalla. La
+            última opinión de un visitante reemplaza a la anterior.
+          </p>
         </div>
       </Section>
 
