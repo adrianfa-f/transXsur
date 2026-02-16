@@ -5,7 +5,7 @@ const Seo = ({
   title,
   description,
   keywords,
-  image = "https://www.transxsur.com/og-image.jpg", // Reemplaza con tu imagen real
+  image = "/images/services/transporte-mercancias-1.jpg", // Reemplaza con tu imagen real
   url,
   type = "website",
 }) => {
