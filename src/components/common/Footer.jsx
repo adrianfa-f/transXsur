@@ -14,8 +14,7 @@ const Footer = () => {
   const contactInfo = {
     phone: "+34 643 49 53 51",
     email: "info@transxsur.com",
-    address:
-      "Calle de la Fuente, 11392 Benalup-Casas Viejas, Cádiz, EspañaZahara de la Sierra Cádiz, España",
+    address: "Calle de la Fuente, 11392 Benalup-Casas Viejas, Cádiz, España",
     atendidoPor: "Pedro Ernesto Pérez", // Nombre del responsable
   };
 
