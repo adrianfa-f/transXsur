@@ -84,7 +84,7 @@ const Home = () => {
     <>
       <Seo
         title="Inicio"
-        description="Transportes del Sur: mudanzas, mensajería y transporte de mercancías en Sevilla. Servicio personalizado con un trato cercano."
+        description="Transportes del Sur: mudanzas, mensajería y transporte de mercancías en Cádiz. Servicio personalizado con un trato cercano."
         url="https://www.transxsur.com/"
       />
       {/* Hero Section */}

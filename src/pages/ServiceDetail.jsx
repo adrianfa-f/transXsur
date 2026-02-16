@@ -35,7 +35,7 @@ const ServiceDetail = () => {
       <Seo
         title={service.title}
         description={service.shortDescription}
-        keywords={`transporte, ${service.title.toLowerCase()}, Sevilla, mudanzas`}
+        keywords={`transporte, ${service.title.toLowerCase()}, Cádiz, mudanzas`}
         image={service.images[0]}
         url={`https://www.transxsur.com/servicios/${service.slug}`}
       />

@@ -13,7 +13,7 @@ const Seo = ({
   const defaultDescription =
     "Transportes del Sur, tu aliado de confianza para mudanzas, mensajería y carga. Un solo vehículo, mil soluciones.";
   const defaultKeywords =
-    "transporte, mudanzas, mensajería, fletes, última milla, Sevilla, transporte de mercancías";
+    "transporte, mudanzas, mensajería, fletes, última milla, Cádiz, transporte de mercancías";
 
   return (
     <Helmet>

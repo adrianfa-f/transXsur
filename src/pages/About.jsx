@@ -19,7 +19,7 @@ const About = () => {
     <>
       <Seo
         title="Sobre nosotros"
-        description="Conoce a Pedro Ernesto, transportista con años de experiencia que emprende con una furgoneta nueva para ofrecerte un servicio cercano y de confianza en Andalucía."
+        description="Conoce a Pedro Ernesto, transportista con años de experiencia que emprende con una furgoneta nueva para ofrecerte un servicio cercano y de confianza en Cádiz."
         url="https://www.transxsur.com/nosotros"
       />
       {/* Hero */}
@@ -131,7 +131,7 @@ const About = () => {
             <p className="text-gray-600">Dedicación exclusiva</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold text-primary">Andalucía</p>
+            <p className="text-4xl font-bold text-primary">Cádiz</p>
             <p className="text-gray-600">Nuestra zona de trabajo</p>
           </div>
         </div>
@@ -198,7 +198,7 @@ const About = () => {
             <FaUsers className="text-4xl text-secondary mx-auto mb-4" />
             <h3 className="text-xl font-bold mb-2">Compromiso local</h3>
             <p className="opacity-90">
-              Conocemos cada rincón de Andalucía, sus accesos y necesidades.
+              Conocemos cada rincón de Cádiz, sus accesos y necesidades.
               Apostamos por la economía de proximidad.
             </p>
           </div>

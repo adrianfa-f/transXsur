@@ -16,7 +16,7 @@ export const services = [
     shortDescription:
       "Te ayudamos a trasladar tus cosas con cuidado y puntualidad. Trato cercano y sin prisas.",
     description:
-      "Sabemos que una mudanza es un momento especial. Por eso, aunque empezamos con una sola furgoneta, ponemos toda la atención en que tus pertenencias lleguen perfectas. Te ayudamos con la carga y descarga, y si necesitas consejo para embalar, aquí estamos. En Andalucía, nos gusta el trato directo: habla con el propietario, que será quien conduzca y se encargará personalmente de tu mudanza.",
+      "Sabemos que una mudanza es un momento especial. Por eso, aunque empezamos con una sola furgoneta, ponemos toda la atención en que tus pertenencias lleguen perfectas. Te ayudamos con la carga y descarga, y si necesitas consejo para embalar, aquí estamos. En Cádiz, nos gusta el trato directo: habla con el propietario, que será quien conduzca y se encargará personalmente de tu mudanza.",
     icon: FaBoxOpen,
     images: [
       "/images/services/mudanzas-locales-1.jpg",
@@ -33,7 +33,7 @@ export const services = [
     benefits: [
       "Ahorras esfuerzo físico",
       "Sabes quién te atiende en todo momento",
-      "Puntualidad andaluza",
+      "Puntualidad gaditana",
       "Sin letra pequeña",
     ],
   },
@@ -44,7 +44,7 @@ export const services = [
     shortDescription:
       "Llevamos tus bultos, palés o pedidos. Desde una caja hasta media carga.",
     description:
-      "¿Necesitas enviar material a un cliente o recoger un pedido? Nuestra furgoneta está lista para circular por toda Andalucía. Al ser un negocio pequeño, nos adaptamos a tus horarios y te ofrecemos un precio justo. Además, al tratar directamente con el dueño, no hay intermediarios: lo que pactamos se cumple.",
+      "¿Necesitas enviar material a un cliente o recoger un pedido? Nuestra furgoneta está lista para circular por toda Cádiz. Al ser un negocio pequeño, nos adaptamos a tus horarios y te ofrecemos un precio justo. Además, al tratar directamente con el dueño, no hay intermediarios: lo que pactamos se cumple.",
     icon: FaTruck,
     images: [
       "/images/services/transporte-mercancias-1.jpg",
